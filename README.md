@@ -1,84 +1,121 @@
-# Personal Training System
+# Smart Programming System for Personal Trainers
 
-## Project Overview
-A web application that helps personal trainers create customized workout programs for clients in minutes instead of hours. The system uses AI to handle repetitive aspects of program design while maintaining the trainer's professional judgment and expertise.
+An AI-powered workout program generation system that helps personal trainers create customized workouts for their clients.
 
-## Key Features for MVP (30-Day Target)
+## Features
 
-- **Client profile creation & management**
-- **Program generation** based on client parameters
-- **Program customization interface**
-- **Exportable client-facing workout plans**
-- **Basic progress tracking**
+- **Client Management**: Store and manage detailed client profiles
+- **Exercise Library**: Comprehensive database of exercises with details and instructions
+- **Program Creation**: Create custom workout programs from scratch or templates
+- **AI-Powered Generation**: Generate personalized workout programs using Claude AI
+- **Progress Tracking**: Track client progress and workout compliance
 
-## Technology Stack
+## Tech Stack
 
 - **Frontend**: React with Tailwind CSS
 - **Backend**: Node.js with Express
-- **Database**: MongoDB (scalable, flexible schema)
-- **AI Integration**: Claude API for program generation
-- **Deployment**: Vercel (frontend), Railway or Render (backend)
-- **Development**: Cursor IDE for accelerated coding
+- **Database**: MongoDB
+- **Authentication**: JWT-based auth
+- **AI**: Claude API integration
 
-## Data Requirements
+## Directory Structure
 
-### Exercise Library
-- Basic library of 100-200 exercises with descriptions
-- Option to add custom exercises
-
-### Program Templates
-- Strength training
-- Hypertrophy
-- Weight loss
-- Sport-specific conditioning
-
-### Client Parameters
-- Fitness level
-- Available equipment
-- Training frequency
-- Goals
-- Limitations/injuries
-
-## Post-MVP Features (Future Development)
-
-- Exercise demonstration videos
-- Nutrition guidance integration
-- Mobile app for clients
-- Advanced analytics and progress visualization
-- Online payment processing for trainers
-
-## Marketing & Launch Strategy
-
-- **Initial Users**: Recruit 5-10 trainers for beta testing
-- **Feedback Loop**: Implement structured feedback system
-- **Launch Channels**:
-  - Fitness professional groups on Facebook/LinkedIn
-  - Instagram with before/after examples of time saved
-  - Direct outreach to local gyms and training facilities
-
-## Key Technical Challenges
-
-- **Designing Effective Claude Prompts**: Creating prompts that generate useful, scientifically sound programs
-- **Exercise Progression Logic**: Implementing intelligent progression based on client feedback
-- **User Experience**: Making complex program design intuitive for trainers
-
-## Development Roadmap
-
-1. Setup project infrastructure and repository
-2. Implement user authentication and client profiles
-3. Develop exercise library and program templates
-4. Integrate AI program generation
-5. Build program customization interface
-6. Create exportable workout plans
-7. Implement basic progress tracking
-8. Testing and refinement
-9. Beta launch with selected trainers
-10. Iterate based on feedback
+```
+personal-training-system/
+├── client/                  # React frontend
+│   ├── public/              # Static files
+│   └── src/                 # React source code
+│       ├── assets/          # Images, fonts, etc.
+│       ├── components/      # Reusable UI components
+│       ├── context/         # React context providers
+│       ├── hooks/           # Custom React hooks
+│       ├── layouts/         # Layout components
+│       ├── pages/           # Page components
+│       ├── services/        # API services
+│       └── utils/           # Utility functions
+├── server/                  # Node.js/Express backend
+│   ├── config/              # Configuration files
+│   ├── controllers/         # API controllers
+│   ├── middleware/          # Express middleware
+│   ├── models/              # MongoDB models
+│   ├── routes/              # API routes
+│   ├── services/            # Business logic services
+│   │   └── claude/          # Claude AI integration
+│   └── utils/               # Utility functions
+```
 
 ## Getting Started
 
-Instructions for setting up the development environment will be added as the project progresses.
+### Prerequisites
 
-## Contributing
+- Node.js (v14+)
+- MongoDB
 
-Guidelines for contributing to the project will be established once the initial development framework is in place.
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/personal-training-system.git
+   cd personal-training-system
+   ```
+
+2. Install backend dependencies:
+   ```
+   cd server
+   npm install
+   ```
+
+3. Install frontend dependencies:
+   ```
+   cd ../client
+   npm install
+   ```
+
+4. Create a `.env` file in the server directory with your environment variables:
+   ```
+   NODE_ENV=development
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/personal-training-system
+   JWT_SECRET=your_jwt_secret_key_here
+   JWT_EXPIRES_IN=90d
+   CLAUDE_API_KEY=your_anthropic_api_key_here
+   ```
+
+5. Start the development servers:
+   ```
+   # In the server directory
+   npm run dev
+   
+   # In the client directory (in a separate terminal)
+   npm start
+   ```
+
+6. The frontend will be available at http://localhost:3000 and the backend at http://localhost:5000
+
+## API Endpoints
+
+- **Authentication**
+  - `POST /api/users/signup` - Register a new user
+  - `POST /api/users/login` - Login user
+  
+- **Clients**
+  - `GET /api/clients` - Get all clients
+  - `POST /api/clients` - Create a new client
+  - `GET /api/clients/:id` - Get a specific client
+  - `PATCH /api/clients/:id` - Update a client
+  - `DELETE /api/clients/:id` - Delete a client
+  
+- **Programs**
+  - `GET /api/programs` - Get all programs
+  - `POST /api/programs` - Create a new program
+  - `GET /api/programs/:id` - Get a specific program
+  - `PATCH /api/programs/:id` - Update a program
+  - `DELETE /api/programs/:id` - Delete a program
+  - `POST /api/programs/generate` - Generate a program using AI
+  
+- **Exercises**
+  - `GET /api/exercises` - Get all exercises
+  - `POST /api/exercises` - Create a new exercise
+  - `GET /api/exercises/:id` - Get a specific exercise
+  - `PATCH /api/exercises/:id` - Update an exercise
+  - `DELETE /api/exercises/:id` - Delete an exercise 
